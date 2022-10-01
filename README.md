@@ -19,10 +19,10 @@ Please see bellow which operations are implemented by this node.
 # Index
 
 [Installation](#installation)  
-[Credentials](#credentials)  
-[Operations](#operations)  
-[Compatibility](#compatibility)  
 [Usage](#usage)  
+[Credentials](#credentials)  
+[Resources/Operations](#resources)  
+[Compatibility](#compatibility)  
 [Developers](#developers)  
 
 # Installation
@@ -46,6 +46,14 @@ After installed you can use the search bar to add it to your workflow.
 ![pihole node search n8n](/docs/imgs/pihole_search_bar.png)
 
 ![pihole n8n node](/docs/imgs/pihole_node.png)
+
+
+# Usage
+
+The node configuration is quite simple, just specify the credentials(if required for the operation you want to perform) and the API url. 
+If you are using the default Pi-hole configurations the API url is http://domain/admin/api.php.
+
+The result of the execution is the raw JSON response from Pi-hole. 
 
 
 # Credentials
@@ -75,7 +83,9 @@ If you are only interested in "read" operations you can skip this step.
 
 # Resources
 
-This section describes which Pi-hole API operations are available in this node. Please create an issue or submit PR if you are interested in implementing a new operation.
+This section describes which Pi-hole API operations are available in this node. 
+
+Please create an issue or submit PR if you are interested in implementing a new operation.
 
 ## Status
 
@@ -180,15 +190,9 @@ Returns the last blocked domain.
 
 Tested on n8n version 0.193.5 and Pi-hole v5.12.2 | FTL v5.18.1 | Web Interface v5.15.1 
 
-# Usage
-
-After creating the credentials, you just have to add the node to your workspace. The node configuration is quite simple, just specify the credentials and the API url. 
-If you are using the default Pi-hole configurations the API url is http://domain/admin/api.php.
-
-The result of the execution is the raw JSON response from Pi-hole. 
-
-
 # Developers 
+
+//TODO
 
 ## Requirements
 
