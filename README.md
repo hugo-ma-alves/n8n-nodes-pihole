@@ -10,7 +10,7 @@
 [npm-downloads-url]: https://npmcharts.com/compare/n8n-nodes-pihole?minimal=true
 
 
-[N8n](https://n8n.io/) node for [Pi-hole](https://pi-hole.net/) API, this API documentation is available [here](https://discourse.pi-hole.net/t/pi-hole-api/1863)
+This is an [N8n](https://n8n.io/) community node. It allows you to use the [Pi-hole](https://pi-hole.net/) [API]((https://discourse.pi-hole.net/t/pi-hole-api/1863)) in your workflow.
 
 The Pi-hole API provides read and write operations. However, if you want to use the write operations you must create a Credential in n8n and store the Pi-hole API key there.
 
@@ -34,6 +34,18 @@ Just follow the generic [installation guide](https://docs/imgs.n8n.io/integratio
 **NpmJs url:** https://www.npmjs.com/package/n8n-nodes-pihole
 
 **NpmJs package name:** n8n-nodes-pihole
+
+1. Go to **Settings > Community Nodes**.
+2. Click **Install**.
+3. Enter `n8n-nodes-pihole` in **Enter npm package name** input.
+4. Check the box "**I understand the risks of installing unverified code from a public source**".
+5. Click **Install**.
+
+After installed you can use the search bar to add it to your workflow.
+
+![pihole node search n8n](/docs/imgs/pihole_search_bar.png)
+
+![pihole n8n node](/docs/imgs/pihole_node.png)
 
 
 # Credentials

@@ -12,12 +12,12 @@ export class PiHoleApi implements ICredentialType {
 			required: false,
 		},
 	];
-	authenticate = {
+	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			qs: {
 				auth: '={{$credentials.apiKey}}',
 			},
 		},
-	} as IAuthenticateGeneric;
+	};
 }

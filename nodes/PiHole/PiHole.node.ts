@@ -19,6 +19,10 @@ export class PiHole implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'RecentBlocked',
+						value: 'recentBlocked',
+					},
+					{
 						name: 'Status',
 						value: 'status',
 					},
@@ -27,16 +31,12 @@ export class PiHole implements INodeType {
 						value: 'summary',
 					},
 					{
-						name: 'Version',
-						value: 'version',
-					},
-					{
 						name: 'Type',
 						value: 'type',
 					},
 					{
-						name: 'RecentBlocked',
-						value: 'recentBlocked',
+						name: 'Version',
+						value: 'version',
 					},
 				],
 				default: 'status',
@@ -245,6 +245,7 @@ export class PiHole implements INodeType {
 		],
 		displayName: 'Pi-hole',
 		name: 'PiHole',
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
 		icon: 'file:pihole.png',
 		group: ['transform'],
 		version: 1,

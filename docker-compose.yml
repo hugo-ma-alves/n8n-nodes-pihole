@@ -8,3 +8,8 @@ services:
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: '123456'
+  # n8n:
+  #   container_name: pihole
+  #   image: n8nio/n8n:latest
+  #   ports:
+  #     - "5678:5678/tcp"
