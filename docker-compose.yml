@@ -1,0 +1,10 @@
+version: "3"
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: '123456'
