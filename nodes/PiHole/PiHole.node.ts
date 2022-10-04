@@ -19,6 +19,10 @@ export class PiHole implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'ApiVersion',
+						value: 'apiVersion',
+					},
+					{
 						name: 'RecentBlocked',
 						value: 'recentBlocked',
 					},
@@ -39,7 +43,63 @@ export class PiHole implements INodeType {
 						value: 'version',
 					},
 				],
-				default: 'status',
+				default: 'version',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['apiVersion'],
+					},
+				},
+				options: [
+					{
+						name: 'Get',
+						value: 'get',
+						action: 'Get the API version',
+						description: 'Get the API version (2 or 3)',
+						routing: {
+							request: {
+								method: 'GET',
+								qs: {
+									version: '',
+								},
+							},
+						},
+					},
+				],
+				default: 'get',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['recentBlocked'],
+					},
+				},
+				options: [
+					{
+						name: 'Get',
+						value: 'get',
+						action: 'Get the recently blocked domains',
+						description: 'Show most recent blocked domain',
+						routing: {
+							request: {
+								method: 'GET',
+								qs: {
+									recentBlocked: '',
+								},
+							},
+						},
+					},
+				],
+				default: 'get',
 			},
 			{
 				displayName: 'Operation',
@@ -119,7 +179,7 @@ export class PiHole implements INodeType {
 							numberStepSize: 1,
 						},
 						default: '',
-						description: 'Disable Pi-hole for this ammount of seconds',
+						description: 'Disable Pi-hole for this amount of seconds',
 						routing: {
 							request: {
 								qs: {
@@ -165,34 +225,6 @@ export class PiHole implements INodeType {
 				noDataExpression: true,
 				displayOptions: {
 					show: {
-						resource: ['version'],
-					},
-				},
-				options: [
-					{
-						name: 'Get',
-						value: 'get',
-						action: 'Get the API version',
-						description: 'Get the API version (2 or 3)',
-						routing: {
-							request: {
-								method: 'GET',
-								qs: {
-									version: '',
-								},
-							},
-						},
-					},
-				],
-				default: 'get',
-			},
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				noDataExpression: true,
-				displayOptions: {
-					show: {
 						resource: ['type'],
 					},
 				},
@@ -221,20 +253,20 @@ export class PiHole implements INodeType {
 				noDataExpression: true,
 				displayOptions: {
 					show: {
-						resource: ['recentBlocked'],
+						resource: ['version'],
 					},
 				},
 				options: [
 					{
 						name: 'Get',
 						value: 'get',
-						action: 'Get the recently blocked domains',
-						description: 'Show most recent blocked domain',
+						action: 'Get the software versions',
+						description: 'Determine if updates are available for Pi-hole',
 						routing: {
 							request: {
 								method: 'GET',
 								qs: {
-									recentBlocked: '',
+									versions: '',
 								},
 							},
 						},
