@@ -10,9 +10,11 @@
 [npm-downloads-url]: https://npmcharts.com/compare/n8n-nodes-pihole?minimal=true
 
 
-This is an [N8n](https://n8n.io/) community node. It allows you to use the [Pi-hole](https://pi-hole.net/) [API]((https://discourse.pi-hole.net/t/pi-hole-api/1863)) in your workflow.
+This is an [N8n](https://n8n.io/) community node. It allows you to use the [Pi-hole](https://pi-hole.net/) API [[1]](https://discourse.pi-hole.net/t/pi-hole-api/1863),[[2]](https://github.com/pi-hole/AdminLTE/blob/master/api.php), in your workflow.
 
-The Pi-hole API provides read and write operations. However, if you want to use the write operations you must create a Credential in n8n and store the Pi-hole API key there.
+Most of the resources provided by the Pi-hole API are read only, for example the ad blocking metrics or the system status. To use these endpoints you don't need to create a credential.
+
+However, if you plan to use the endpoints that can change the Pi-hole system status, for example disabling/enable the ad blocking, you will need to create the credential to access the API.
 
 Please see bellow which operations are implemented by this node.
 
@@ -35,30 +37,27 @@ Just follow the generic [installation guide](https://docs/imgs.n8n.io/integratio
 
 **NpmJs package name:** n8n-nodes-pihole
 
-1. Go to **Settings > Community Nodes**.
-2. Click **Install**.
-3. Enter `n8n-nodes-pihole` in **Enter npm package name** input.
-4. Check the box "**I understand the risks of installing unverified code from a public source**".
-5. Click **Install**.
+1. Go to **Settings > Community Nodes**, and Click **Install a community node**.
+![n8n community node install](/docs/imgs/settings_community_nodes.png)
+1. Enter `n8n-nodes-pihole` in **Enter npm package name** input.
+![n8n community node install pihole](/docs/imgs/settings_community_pihole_node.png)
+1. Click **Install**.
 
-After installed you can use the search bar to add it to your workflow.
+After installed you can use the search bar to add the Pi-hole node to your workflow.
 
 ![pihole node search n8n](/docs/imgs/pihole_search_bar.png)
-
 ![pihole n8n node](/docs/imgs/pihole_node.png)
 
 
 # Usage
 
-The node configuration is quite simple, just specify the credentials(if required for the operation you want to perform) and the API url. 
-If you are using the default Pi-hole configurations the API url is http://domain/admin/api.php.
-
-The result of the execution is the raw JSON response from Pi-hole. 
+The node configuration is quite simple, just specify the credentials(if required for the operation you want to perform) and the API URL. 
+If you are using the default Pi-hole configurations the API url is http://domain/admin/api.php. For example, http://192.168.1.125/admin/api.php.
 
 
 # Credentials
 
-Only the write operations require the usage of the API key. For example, if you want to disable or enable the ad blocking from n8n, you must create the credential. 
+Only the operations that can change the Pi-hole state require the usage of the API key. For example, if you want to disable or enable the ad blocking from n8n, you must create the credential. 
 If you are only interested in "read" operations you can skip this step. 
 
 1. First you must get the Pi-hole API key. Navigate to the Settings-> API/ Web interface, and click on the "Show API token".
@@ -73,11 +72,11 @@ If you are only interested in "read" operations you can skip this step.
 
 ![pihole api key](/docs/imgs/api_key.png)
 
-4. Back to the n8n, create a credential of the type "Pi-hole"
+4. Back to the n8n web page, create a credential of the type "Pi-hole"
 
 ![n8n credential menu](/docs/imgs/n8n_credential_menu.png)
 
-4. Paste the Pi-hole API key
+4. Paste and save the Pi-hole API key
 
 ![n8n credential pihole](/docs/imgs/n8n_credential_pihole.png)
 
@@ -110,7 +109,7 @@ This operation enables the Pi-hole ad blocking.
 
 This operation disables the Pi-hole ad blocking. 
 
-If you want to disable the ad blocking for specific amount of time you can add the "seconds" property. When specified it will disable the ad blocking for the specified amount of seconds.
+If you want to disable the ad blocking for specific amount of time, you can configure the "seconds" property. When specified it will disable the ad blocking for the specified amount of seconds.
 
 
 ## Summary
@@ -161,7 +160,7 @@ For example:
   }
 ```
 
-## Version
+## ApiVersion
 
 Returns the version of the API.
 
@@ -170,6 +169,29 @@ Returns the version of the API.
   "version": 3
 }
 ```
+
+## Version
+
+Returns the version for each Pi-hole component (core, web and ftl).
+Also indicates if any of the components have a pending update.
+
+```json
+{
+  "core_update": false,
+  "web_update": false,
+  "FTL_update": false,
+  "core_current": "v5.12.2",
+  "web_current": "v5.15.1",
+  "FTL_current": "v5.18.1",
+  "core_latest": "v5.12.2",
+  "web_latest": "v5.15.1",
+  "FTL_latest": "v5.18.1",
+  "core_branch": "master",
+  "web_branch": "master",
+  "FTL_branch": "master"
+}
+```
+
 
 ## Type
 
