@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-pihole",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Pi-hole api client for the n8n",
 	"keywords": [
 		"n8n-community-node-package"
