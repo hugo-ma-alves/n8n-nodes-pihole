@@ -35,6 +35,14 @@ export class PiHole implements INodeType {
 						value: 'summary',
 					},
 					{
+						name: 'TopClient',
+						value: 'topClient',
+					},
+					{
+						name: 'TopClientBlocked',
+						value: 'topClientBlocked',
+					},
+					{
 						name: 'Type',
 						value: 'type',
 					},
@@ -217,6 +225,126 @@ export class PiHole implements INodeType {
 					},
 				],
 				default: 'get',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['topClient'],
+					},
+				},
+				options: [
+					{
+						name: 'Get',
+						value: 'get',
+						action: 'Get the clients with more requests',
+						description: 'Get the top 10 clients with the higher number of requests. Results are in descending order.',
+						routing: {
+							request: {
+								method: 'GET',
+								qs: {
+									topClients: '10',
+								},
+							},
+						},
+					},
+				],
+				default: 'get',
+			},
+			{
+				displayName: 'Additional Fields',
+				name: 'additionalFieldsTopClient',
+				type: 'collection',
+				default: {},
+				placeholder: 'Add Field',
+				displayOptions: {
+					show: {
+						resource: ['topClient'],
+					},
+				},
+				options: [
+					{
+						displayName: 'Number Results',
+						name: 'numberOfResults',
+						type: 'number',
+						typeOptions: {
+							minValue: 1,
+							numberStepSize: 1,
+						},
+						default: 10,
+						description: 'Gets at most this number of results',
+						routing: {
+							request: {
+								qs: {
+									topClients: '={{$value}}',
+								},
+							},
+						},
+					},
+				],
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['topClientBlocked'],
+					},
+				},
+				options: [
+					{
+						name: 'Get',
+						value: 'get',
+						action: 'Get the clients with more blocked requests',
+						description: 'Get the top 10 clients with the higher number of blocked requests. Results are in descending order.',
+						routing: {
+							request: {
+								method: 'GET',
+								qs: {
+									topClientsBlocked: '10',
+								},
+							},
+						},
+					},
+				],
+				default: 'get',
+			},
+			{
+				displayName: 'Additional Fields',
+				name: 'additionalFieldsTopClientBlocked',
+				type: 'collection',
+				default: {},
+				placeholder: 'Add Field',
+				displayOptions: {
+					show: {
+						resource: ['topClientBlocked'],
+					},
+				},
+				options: [
+					{
+						displayName: 'Number Results',
+						name: 'numberOfResults',
+						type: 'number',
+						typeOptions: {
+							minValue: 1,
+							numberStepSize: 1,
+						},
+						default: 10,
+						description: 'Gets at most this number of results',
+						routing: {
+							request: {
+								qs: {
+									topClientsBlocked: '={{$value}}',
+								},
+							},
+						},
+					},
+				],
 			},
 			{
 				displayName: 'Operation',

@@ -86,6 +86,19 @@ This section describes which Pi-hole API operations are available in this node.
 
 Please create an issue or submit PR if you are interested in implementing a new operation.
 
+| Resource          | Operation | Credentials required |
+|-------------------|-----------|----------------------|
+| Status            | Get       | no                   |
+|                   | Enable    | yes                  |
+|                   | Disable   | yes                  |
+| Summary           | Get       | no                   |
+| ApiVersion        | Get       | no                   |
+| Version           | Get       | no                   |
+| Type              | Get       | no                   |
+| RecentBlocked     | Get       | no                   |
+| TopClients        | Get       | yes                  |
+| TopClientsBlocked | Get       | yes                  |
+
 ## Status
 
 ### Get
@@ -207,6 +220,39 @@ Returns the backend used by the API (either PHP or FTL).
 
 Returns the last blocked domain.
 
+## TopClient - Requires credential
+
+Returns the clients with the higher number of requests. 
+By default it returns the first 10 clients, you can specify a different value in the additional properties.
+
+```
+[
+  {
+    "top_sources": {
+      "DESKTOP.lan|192.168.1.245": 11057,
+      "something.lan|192.168.1.102": 10707,
+      "192.168.1.163": 4033,
+    }
+  }
+]
+```
+
+## TopClientBlocked - Requires credential
+
+Returns the clients with the higher number of blocked requests. 
+By default it returns the first 10 clients, you can specify a different value in the additional properties.
+
+```
+[
+  {
+    "top_sources_blocked": {
+      "DESKTOP.lan|192.168.1.245": 11057,
+      "something.lan|192.168.1.102": 10707,
+      "192.168.1.163": 4033,
+    }
+  }
+]
+```
 
 # Compatibility
 
