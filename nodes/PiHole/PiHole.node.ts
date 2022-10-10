@@ -241,7 +241,8 @@ export class PiHole implements INodeType {
 						name: 'Get',
 						value: 'get',
 						action: 'Get the clients with more requests',
-						description: 'Get the top 10 clients with the higher number of requests. Results are in descending order.',
+						description:
+							'Get the top 10 clients with the higher number of requests. Results are in descending order.',
 						routing: {
 							request: {
 								method: 'GET',
@@ -301,7 +302,8 @@ export class PiHole implements INodeType {
 						name: 'Get',
 						value: 'get',
 						action: 'Get the clients with more blocked requests',
-						description: 'Get the top 10 clients with the higher number of blocked requests. Results are in descending order.',
+						description:
+							'Get the top 10 clients with the higher number of blocked requests. Results are in descending order.',
 						routing: {
 							request: {
 								method: 'GET',
