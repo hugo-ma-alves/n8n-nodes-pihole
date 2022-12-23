@@ -86,12 +86,15 @@ This section describes which Pi-hole API operations are available in this node.
 
 Please create an issue or submit PR if you are interested in implementing a new operation.
 
+**Note:** If your Pi-hole web interface is not password protected, no credential is required!
+ 
+
 | Resource          | Operation | Credentials required |
 |-------------------|-----------|----------------------|
-| Status            | Get       | no                   |
+| Status            | Get       | yes                  |
 |                   | Enable    | yes                  |
 |                   | Disable   | yes                  |
-| Summary           | Get       | no                   |
+| Summary           | Get       | yes                  |
 | ApiVersion        | Get       | no                   |
 | Version           | Get       | no                   |
 | Type              | Get       | no                   |
@@ -101,7 +104,7 @@ Please create an issue or submit PR if you are interested in implementing a new 
 
 ## Status
 
-### Get
+### Get - Requires credential
 
 Returns overall status of the system.
 
@@ -125,7 +128,7 @@ This operation disables the Pi-hole ad blocking.
 If you want to disable the ad blocking for specific amount of time, you can configure the "seconds" property. When specified it will disable the ad blocking for the specified amount of seconds.
 
 
-## Summary
+## Summary - Requires credential
 
 Returns the summary of the system stats.
 
